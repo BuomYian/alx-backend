@@ -1,35 +1,36 @@
 #!/usr/bin/env python3
-""" LRUCache module
+""" MRUCache module
 """
 
 from base_caching import BaseCaching
 
 
-class LRUCache(BaseCaching):
-    """ LRUCache class inherits from BaseCaching and is a caching system
+class MRUCache(BaseCaching):
+    """ MRUCache class inherits from BaseCaching and is a caching system
     """
 
     def __init__(self):
-        """ Initializes the LRU cache
+        """ Initializes the MRU cache
         """
         super().__init__()
         self.order = []
 
     def put(self, key, item):
-        """ Add an item in the cache using LRU algorithm
+        """ Add an item in the cache using MRU algorithm
         """
         if key is not None and item is not None:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                # Discard the least recently used item using LRU algorithm
-                lru_key = self.order.pop(0)
-                self.cache_data.pop(lru_key)
-                print("DISCARD:", lru_key)
+                # Discard the most recently used item using MRU algorithm
+                if self.order:
+                    mru_key = self.order.pop()
+                    self.cache_data.pop(mru_key)
+                    print("DISCARD:", mru_key)
 
             self.cache_data[key] = item
-            self.order.append(key)
 
             # Move the newly added key to the end
-            self.order.remove(key)
+            if key in self.order:
+                self.order.remove(key)
             self.order.append(key)
 
     def get(self, key):
@@ -39,7 +40,8 @@ class LRUCache(BaseCaching):
             return None
 
         # Move the accessed key to the end
-        self.order.remove(key)
+        if key in self.order:
+            self.order.remove(key)
         self.order.append(key)
 
         return self.cache_data[key]
