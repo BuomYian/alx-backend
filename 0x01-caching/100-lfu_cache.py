@@ -15,6 +15,7 @@ class LFUCache(BaseCaching):
         super().__init__()
         self.frequencies = {}  # To store the frequency of each key
         self.min_frequency = 0
+        self.order = []  # To store the order of key access
 
     def put(self, key, item):
         """
@@ -27,21 +28,24 @@ class LFUCache(BaseCaching):
                     k for k in self.frequencies if self.frequencies[k] == self.min_frequency]
                 if not lfu_keys:
                     # If no keys with the least frequency, use LRU to break the tie
-                    lru_key = min(self.frequencies,
-                                  key=lambda k: self.frequencies[k])
+                    lru_key = min(
+                        self.order, key=lambda k: self.order.index(k))
                     lfu_keys = [
                         k for k in self.frequencies if self.frequencies[k] == self.frequencies[lru_key]]
 
                 lfu_key = lfu_keys[0]
                 self.cache_data.pop(lfu_key)
                 self.frequencies.pop(lfu_key)
+                self.order.remove(lfu_key)
+                print("DISCARD:", lfu_key)
 
             self.cache_data[key] = item
             self.frequencies[key] = 1
-            self.min_frequency = 1
+            self.order.append(key)
 
     def get(self, key):
-        """ Get an item by key
+        """
+        Get an item by key
         """
         if key is None or key not in self.cache_data:
             return None
@@ -50,7 +54,7 @@ class LFUCache(BaseCaching):
         self.frequencies[key] += 1
 
         # Move the accessed key to the end
-        # self.order.remove(key)
-        # self.order.append(key)
+        self.order.remove(key)
+        self.order.append(key)
 
         return self.cache_data[key]
