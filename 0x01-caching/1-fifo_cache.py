@@ -24,7 +24,6 @@ class FIFOCache(BaseCaching):
         """
         if key is None or item is None:
              return
-
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             # Discard the first item using FIFO algorithm
             first_item = self.order.pop(0)
