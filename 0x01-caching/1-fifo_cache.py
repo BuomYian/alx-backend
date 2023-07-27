@@ -22,12 +22,14 @@ class FIFOCache(BaseCaching):
         """
         Add an item in the cache using FIFO algorithm
         """
-        if key is not None and item is not None:
-            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                # Discard the first item using FIFO algorithm
-                first_item = self.order.pop(0)
-                self.cache_data.pop(first_item)
-                print("DISCARD:", first_item)
+        if key is None or item is None:
+             return
+
+        if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+            # Discard the first item using FIFO algorithm
+            first_item = self.order.pop(0)
+            self.cache_data.pop(first_item)
+            print("DISCARD:", first_item)
 
         self.cache_data[key] = item
         self.order.append(key)
