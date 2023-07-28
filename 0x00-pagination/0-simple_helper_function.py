@@ -10,8 +10,10 @@ Example:
     index_range(3, 15) returns (30, 45)
 """
 
+from typing import Tuple
 
-def index_range(page: int, page_size: int) -> tuple[int, int]:
+
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
     Calculate the start and end index for a given page number and page size
 
@@ -20,7 +22,7 @@ def index_range(page: int, page_size: int) -> tuple[int, int]:
         page_size (int): The number of items per page
 
     Returns:
-        tuple: A tuple containing the start index and end index.
+        Tuple[int, int]: A tuple containing the start index and end index.
     """
     start_index = (page - 1) * page_size
     end_index = start_index + page_size
