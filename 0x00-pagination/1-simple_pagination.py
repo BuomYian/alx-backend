@@ -10,7 +10,6 @@ Example:
     index_range(3, 15) returns (30, 45)
 """
 import csv
-import math
 from typing import Tuple, List
 
 
@@ -59,8 +58,10 @@ class Server:
         Returns:
             List[List]: The page of the dataset as a list of rows (lists).
         """
-        assert isinstance(page, int) and page > 0, "Page must be a positive integer."
-        assert isinstance(page_size, int) and page_size > 0, "Page size must be a positive integer."
+        assert isinstance(
+            page, int) and page > 0, "Page must be a positive integer."
+        assert isinstance(
+            page_size, int) and page_size > 0, "Page size must be a positive integer."
 
         dataset = self.dataset()
         start_index, end_index = index_range(page, page_size)
