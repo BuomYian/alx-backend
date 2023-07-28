@@ -9,17 +9,18 @@ Example:
     index_range(1, 7) returns (0, 7)
     index_range(3, 15) returns (30, 45)
 """
+
 import csv
-from typing import Tuple, List
+from typing import List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """
-    Calculate the start and end index for a given page number and page size
+    Calculate the start and end index for a given page number and page size.
 
     Args:
         page (int): The page number (1-indexed).
-        page_size (int): The number of items per page
+        page_size (int): The number of items per page.
 
     Returns:
         Tuple[int, int]: A tuple containing the start index and end index.
