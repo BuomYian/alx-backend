@@ -4,7 +4,7 @@ Basic Flask app with Flask-babel configuration
 """
 
 from flask import Flask, render_template, request
-from flask_babel import Babel, babel_localeselector
+from flask_babel import Babel
 
 app = Flask(__name__)
 babel = Babel(app)
