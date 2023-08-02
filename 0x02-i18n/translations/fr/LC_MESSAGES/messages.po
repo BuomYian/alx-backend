@@ -3,16 +3,13 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
-msgid "home_title"
-msgstr "Bienvenus chez Holberton"
-
-msgid "home_header"
-msgstr "Bonjour monde!"
+msgid ""
+msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-08-01 19:04+0000\n"
-"PO-Revision-Date: 2023-08-01 19:04+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: buom.nyajal@gmail.com\n"
+"POT-Creation-Date: 2023-08-02 08:25+0000\n"
+"PO-Revision-Date: 2023-08-02 08:25+0000\n"
+"Last-Translator: Buomkuoth Yian <buom.nyajal@gmail.com>\n"
 "Language: fr\n"
 "Language-Team: fr <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
@@ -21,3 +18,8 @@ msgstr "Bonjour monde!"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
+msgid "home_title"
+msgstr "Bienvenue chez Holberton"
+
+msgid "home_header"
+msgstr "Bonjour monde!"
