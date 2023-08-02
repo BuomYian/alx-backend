@@ -6,6 +6,7 @@ and user login system
 
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
+from typing import Union, Dict
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -43,20 +44,23 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-def get_user(user_id):
+def get_user() -> Union[Dict, None]:
     """
     Get user information from the mock user database.
     """
-    return users.get(user_id)
+    login_id = request.args.get('login_as')
+    if login_id:
+        return users.get(int(login_id_id))
+    return None
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
     """
     Before request hook to find and set the user as a global on flask.g.user.
     """
-    login_as = request.args.get('login_as')
-    g.user = get_user(int(login_as)) if login_as else None
+    user = get_user()
+    g.user = user
 
 
 @app.route('/')
