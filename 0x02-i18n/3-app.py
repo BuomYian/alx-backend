@@ -4,7 +4,7 @@ Basic Flask app with Flask-babel configuration
 """
 
 from flask import Flask, render_template, request
-from flask_babel import Babel, gettext
+from flask_babel import Babel
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -36,7 +36,7 @@ def index():
     """
     Renders the index.html template.
     """
-    return render_template('3-index.html', title=gettext("Welcome to Holberton"), header=gettext("Hello world!"))
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':
