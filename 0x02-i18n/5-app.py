@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Basic Flask app with Flask-babel configuration, locale selector, template parametrization,
+Basic Flask app with Flask-babel configuration,
+locale selector, template parametrization,
 and user login system
 """
 
