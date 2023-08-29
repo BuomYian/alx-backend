@@ -1,24 +1,28 @@
-// import kue
 import kue from 'kue';
 
-// Creating a queue
-const queue = kue.createQueue({name: 'push_notification_code'});
+// Create a Kue queue
+const queue = kue.createQueue();
 
-// Creating a job
-const jobData = queue.create('push_notification_code', {
-  phoneNumber: 'string',
-  message: 'string'
-});
+// Create a job data object
+const jobData = {
+  phoneNumber: '+251903440654',
+  message: 'Hello, this is a notification!',
+};
 
-jobData
-  .on('enqueue', () => {
-    console.log('Notification job creeated', jobData.id);
-  })
-  .on('complete', () => {
-    console.log('Notification job completed');
-  })
-  .on('failed attempt', () => {
-    console.log('Notification job failed');
+// Create a job in the queue
+const job = queue.create('push_notification_code', jobData)
+  .save((err) => {
+    if (!err) {
+      console.log(`Notification job created: ${job.id}`);
+    }
   });
 
-jobData.save();
+// Listen for job completion
+job.on('complete', () => {
+  console.log('Notification job completed');
+});
+
+// Listen for job failure
+job.on('failed', () => {
+  console.log('Notification job failed');
+});
