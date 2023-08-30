@@ -1,4 +1,4 @@
-// Importing necessary modules
+// Import necessary modules
 
 const express = require('express');
 const redis = require('redis');
